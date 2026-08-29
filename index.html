@@ -17,7 +17,7 @@
   </header>
 
   <section class="hero">
-    <img src="1.jpg" alt="Diamond Building">
+    <img id="heroImage" alt="Diamond Building">
     <div class="hero-caption">DIAMOND<br>BUILDING</div>
   </section>
 
@@ -27,8 +27,8 @@
       <p class="lead">Первый реализованный в России проект Foster + Partners. Архитектура здания основана на образе кристаллической решётки меди: трёхмерная модульная оболочка объединяет металлические и стеклянные грани, формируя выразительную геометрию и одновременно обеспечивая климатическую защиту.</p>
     </div>
     <div class="stats">
-      <div><span>S<sub>зд</sub></span><strong>18 500</strong><small>м²</small></div>
-      <div><span>S<sub>ф</sub></span><strong>17 000</strong><small>м²</small></div>
+      <div><span>Площадь здания</span><strong>18 500</strong><small>м²</small></div>
+      <div><span>Площадь фасада</span><strong>17 000</strong><small>м²</small></div>
     </div>
   </section>
 
@@ -53,5 +53,23 @@
     <div class="company">АО «Мобиль»</div>
   </footer>
 </main>
+<script>
+const localCandidates = ['main.webp','main.jpg','main.jpeg','main.jfif'];
+const externalMain = 'https://www.tenderstream.com/assets/winning-news/slider/2021/202104/1619785088_5193_hq2.jpg';
+const hero = document.getElementById('heroImage');
+let i = 0;
+function tryNext(){
+  if(i < localCandidates.length){
+    const candidate = localCandidates[i++];
+    const test = new Image();
+    test.onload = () => { hero.src = candidate; };
+    test.onerror = tryNext;
+    test.src = candidate;
+  } else {
+    hero.src = externalMain;
+  }
+}
+tryNext();
+</script>
 </body>
 </html>
